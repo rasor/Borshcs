@@ -11,53 +11,53 @@ using System.Numerics;
 /* This is free and unencumbered software released into the public domain. */
 namespace Borshcs
 {
-	using NonNull = androidx.annotation.NonNull;
+	//using NonNull = androidx.annotation.NonNull;
 	public interface BorshInput
 	{
 //JAVA TO C# CONVERTER TODO TASK: Most Java annotations will not have direct .NET equivalent attributes:
 //ORIGINAL LINE: default public <T> T read(final @NonNull Class klass)
 	  T read<T>(in Type klass)
 	  {
-		if (klass == Byte.class || klass == sbyte.class)
+		if (klass == typeof(Byte) || klass == typeof(sbyte))
 		{
 			return (T)Convert.ToSByte(this.readU8());
 		}
-		else if (klass == Short.class || klass == short.class)
+		else if (klass == typeof(short))
 		{
 			return (T)Convert.ToInt16(this.readU16());
 		}
-		else if (klass == Integer.class || klass == int.class)
+		else if (klass == typeof(int))
 		{
 			return (T)Convert.ToInt32(this.readU32());
 		}
-		else if (klass == Long.class || klass == long.class)
+		else if (klass == typeof(long))
 		{
 			return (T)Convert.ToInt64(this.readU64());
 		}
-		else if (klass == BigInteger.class)
+		else if (klass == typeof(BigInteger))
 		{
 			return (T)this.readU128();
 		}
-		else if (klass == Float.class || klass == float.class)
+		else if (klass == typeof(float))
 		{
 			return (T)Convert.ToSingle(this.readF32());
 		}
-		else if (klass == Double.class || klass == double.class)
+		else if (klass == typeof(double))
 		{
 			return (T)Convert.ToDouble(this.readF64());
 		}
-		else if (klass == string.class)
+		else if (klass == typeof(string))
 		{
 			return (T)this.readString();
 		}
-		else if (klass == Boolean.class)
+		else if (klass == typeof(Boolean))
 		{
 			return (T)Convert.ToBoolean(this.readBoolean());
 		}
-		else if (klass == Optional.class)
-		{
-			return (T)this.readOptional();
-		}
+		//else if (klass == Optional.class)
+		//{
+		//	return (T)this.readOptional();
+		//}
 		else if (Borsh.isSerializable(klass))
 		{
 			return (T)this.readPOJO(klass);
